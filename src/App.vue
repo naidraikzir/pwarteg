@@ -2,7 +2,7 @@
   <div id="app">
     <header>
       <a href="/">PWArteg</a>
-      <a href="https://github.com">
+      <a href="https://github.com/naidraikzir/pwarteg">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="28" height="28" viewBox="0 0 24 24"
