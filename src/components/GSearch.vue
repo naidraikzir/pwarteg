@@ -149,6 +149,6 @@ export default {
 
 .fade-enter-active,
 .fade-leave-active {
-  transition: 1.5s;
+  transition: 0.5s;
 }
 </style>
