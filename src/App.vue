@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <header>
-      <a href="/">PWArteg</a>
+      <a href="/pwarteg">PWArteg</a>
       <a href="https://github.com/naidraikzir/pwarteg">
         <github-icon></github-icon>
       </a>

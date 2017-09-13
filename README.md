@@ -1,4 +1,4 @@
-# Whereteg
+# PWArteg
 
 > Mencari warteg terdekat di sekitar
 

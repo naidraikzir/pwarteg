@@ -1,6 +1,10 @@
 <template>
   <section>
+    <h2 v-if="unsupported">Geolocation is not supported in your browser.</h2>
+    <h2 v-else-if="denied">Please allow location access to use this app.</h2>
+
     <div ref="map" style="display: none;"></div>
+
     <transition-group name="fade" mode="out-in" tag="div">
       <loading v-if="isLoading" key="loading"></loading>
       <div key="list" v-if="results.length">
@@ -34,6 +38,8 @@ export default {
 
   data () {
     return {
+      unsupported: false,
+      denied: false,
       isLoading: false,
       placesClient: {},
       distanceClient: {},
@@ -46,18 +52,24 @@ export default {
     if ('geolocation' in navigator) {
       this.getPos()
         .then(this.search)
+        .catch((error) => {
+          if (error.PERMISSION_DENIED) {
+            this.denied = true
+          }
+        })
+        .fina
     } else {
-      alert('Geolocation is not supported in your browser');
+      this.unsupported = true
     }
   },
 
   methods: {
     getPos () {
       return new Promise((resolve, reject) => {
-        this.isLoading = true
         navigator.geolocation.watchPosition(({ coords }) => {
           resolve(coords)
-          this.isLoading = false
+        }, (error) => {
+          reject(error)
         })
       })
     },
@@ -137,6 +149,6 @@ export default {
 
 .fade-enter-active,
 .fade-leave-active {
-  transition: 0.3s;
+  transition: 1.5s;
 }
 </style>
