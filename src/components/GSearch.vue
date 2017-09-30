@@ -57,7 +57,6 @@ export default {
             this.denied = true
           }
         })
-        .fina
     } else {
       this.unsupported = true
     }
@@ -67,6 +66,12 @@ export default {
     getPos () {
       return new Promise((resolve, reject) => {
         navigator.geolocation.watchPosition(({ coords }) => {
+          if (!window.initialHeading) {
+            window.initialHeading = coords.heading
+          }
+
+          console.log(coords)
+          
           resolve(coords)
         }, (error) => {
           reject(error)
